@@ -1,5 +1,6 @@
 package com.nadershamma.apps.androidfunwithflags;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +30,10 @@ public class LoginActivityMEBQ extends AppCompatActivity {
             Toast.makeText(this, "Ingresar usuario y contraseña.", Toast.LENGTH_SHORT).show();
             return;
         }else {
-            if (usuarioLogin.matches("usuario1") && contraseña.matches("1234")) {
+            if (usuarioLogin.equals("usuario1") && contraseña.equals("1234")) {
                 Toast.makeText(this, "Login exitoso.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MainActivityMEBQ.class);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Contraseña incorrecta.", Toast.LENGTH_SHORT).show();
             }

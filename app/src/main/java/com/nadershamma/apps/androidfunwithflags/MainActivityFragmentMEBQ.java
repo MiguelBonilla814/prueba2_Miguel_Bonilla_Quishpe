@@ -57,7 +57,7 @@ public class MainActivityFragmentMEBQ extends Fragment {
         TableLayout answersTableLayout = view.findViewById(R.id.answersTableLayout);
 
         this.random = new SecureRandom();
-        this.shakeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.incorrect_shake_MEBQ);
+        this.shakeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.incorrect_shake);
         this.shakeAnimation.setRepeatCount(3);
         this.quizConstraintLayout = view.findViewById(R.id.quizConstraintLayout);
         this.questionNumberTextView = view.findViewById(R.id.questionNumberTextView);
