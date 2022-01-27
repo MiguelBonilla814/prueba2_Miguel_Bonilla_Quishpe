@@ -12,6 +12,7 @@ public class LoginActivityMEBQ extends AppCompatActivity {
     private EditText editText_usuario;
     private EditText editText_contraseña;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,7 @@ public class LoginActivityMEBQ extends AppCompatActivity {
 
         editText_usuario = findViewById(R.id.editText_usuario);
         editText_contraseña = findViewById(R.id.editText_contraseña);
+
     }
 
     public void Login(View view){
@@ -30,12 +32,18 @@ public class LoginActivityMEBQ extends AppCompatActivity {
             Toast.makeText(this, "Ingresar usuario y contraseña.", Toast.LENGTH_SHORT).show();
             return;
         }else {
-            if (usuarioLogin.equals("usuario1") && contraseña.equals("1234")) {
+            if (usuarioLogin.equals("Miguel") && contraseña.equals("1234")) {
                 Toast.makeText(this, "Login exitoso.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, MainActivityMEBQ.class);
+                intent.putExtra("key_usuario", usuarioLogin);
                 startActivity(intent);
-            } else {
-                Toast.makeText(this, "Contraseña incorrecta.", Toast.LENGTH_SHORT).show();
+            }
+
+            if (usuarioLogin.equals("Gabriel") && contraseña.equals("1234")) {
+                Toast.makeText(this, "Login exitoso.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MainActivityMEBQ.class);
+                intent.putExtra("key_usuario", usuarioLogin);
+                startActivity(intent);
             }
         }
     }

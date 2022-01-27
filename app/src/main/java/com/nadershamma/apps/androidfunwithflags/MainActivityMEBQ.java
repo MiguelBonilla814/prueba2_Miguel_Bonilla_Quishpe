@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.nadershamma.apps.eventhandlers.PreferenceChangeListenerMEBQ;
 import com.nadershamma.apps.lifecyclehelpers.QuizViewModelMEBQ;
@@ -23,6 +24,7 @@ public class MainActivityMEBQ extends AppCompatActivity {
     private MainActivityFragmentMEBQ quizFragment;
     private QuizViewModelMEBQ quizViewModelMEBQ;
     private OnSharedPreferenceChangeListener preferencesChangeListener;
+    private TextView textView_usuario;
 
     private void setSharedPreferences() {
         // set default values in the app's SharedPreferences
@@ -53,6 +55,10 @@ public class MainActivityMEBQ extends AppCompatActivity {
         setSupportActionBar(toolbar);
         this.setSharedPreferences();
         this.screenSetUp();
+
+        textView_usuario = findViewById(R.id.textView_usuario);
+
+        textView_usuario.setText("Jugador: " + getIntent().getStringExtra("key_usuario"));
     }
 
     @Override

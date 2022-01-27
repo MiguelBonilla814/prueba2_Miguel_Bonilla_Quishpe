@@ -40,4 +40,18 @@
         android:layout_height="wrap_content"
         android:text="@string/button_ingresar"
         android:onClick="Login"/>
+
+    <TextView
+        android:id="@+id/textView_usuarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="45px"
+        android:text="@string/usuarios_contraseñas1" />
+
+    <TextView
+        android:id="@+id/textView_usuarios2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="45px"
+        android:text="@string/usuarios_contraseñas2" />
 </LinearLayout>

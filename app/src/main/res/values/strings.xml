@@ -21,4 +21,6 @@
     <string name="hint_usuario">Ingrese el usuario</string>
     <string name="hint_contraseña">Ingrese la contraseña</string>
     <string name="button_ingresar">Ingresar</string>
+    <string name="usuarios_contraseñas1">Usuario 1: Miguel; Contraseña 1: 1234 </string>
+    <string name="usuarios_contraseñas2">Usuario 2: Gabriel; Contraseña 2: 1234 </string>
 </resources>
