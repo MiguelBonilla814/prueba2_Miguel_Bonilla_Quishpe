@@ -99,7 +99,7 @@ public class MainActivityFragmentMEBQ extends Fragment {
         }
 
         for (int rowNumber = 0; rowNumber < numberOfGuessRows; rowNumber++) {
-            guessTableRows[rowNumber].setVisibility(View.VISIBLE);
+            guessTableRows[rowNumber].setVisibility(View.VISIBLE); //
         }
     }
 
