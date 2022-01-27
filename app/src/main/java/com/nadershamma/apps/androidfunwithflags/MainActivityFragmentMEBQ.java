@@ -28,10 +28,10 @@ import android.widget.TextView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.nadershamma.apps.eventhandlers.GuessButtonListener;
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
+import com.nadershamma.apps.eventhandlers.GuessButtonListenerMEBQ;
+import com.nadershamma.apps.lifecyclehelpers.QuizViewModelMEBQ;
 
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragmentMEBQ extends Fragment {
 
     private SecureRandom random;
     private Animation shakeAnimation;
@@ -40,12 +40,12 @@ public class MainActivityFragment extends Fragment {
     private ImageView flagImageView;
     private TableRow[] guessTableRows;
     private TextView answerTextView;
-    private QuizViewModel quizViewModel;
+    private QuizViewModelMEBQ quizViewModelMEBQ;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.quizViewModel = ViewModelProviders.of(getActivity()).get(QuizViewModel.class);
+        this.quizViewModelMEBQ = ViewModelProviders.of(getActivity()).get(QuizViewModelMEBQ.class);
     }
 
     @Override
@@ -53,11 +53,11 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        OnClickListener guessButtonListener = new GuessButtonListener(this);
+        OnClickListener guessButtonListener = new GuessButtonListenerMEBQ(this);
         TableLayout answersTableLayout = view.findViewById(R.id.answersTableLayout);
 
         this.random = new SecureRandom();
-        this.shakeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.incorrect_shake);
+        this.shakeAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.incorrect_shake_MEBQ);
         this.shakeAnimation.setRepeatCount(3);
         this.quizConstraintLayout = view.findViewById(R.id.quizConstraintLayout);
         this.questionNumberTextView = view.findViewById(R.id.questionNumberTextView);
@@ -74,7 +74,7 @@ public class MainActivityFragment extends Fragment {
                     this.guessTableRows[i] = (TableRow) answersTableLayout.getChildAt(i);
                 }
             } catch (ArrayStoreException e) {
-                Log.e(QuizViewModel.getTag(),
+                Log.e(QuizViewModelMEBQ.getTag(),
                         "Error getting button rows on loop #" + String.valueOf(i), e);
             }
         }
@@ -86,13 +86,13 @@ public class MainActivityFragment extends Fragment {
         }
 
         this.questionNumberTextView.setText(
-                getString(R.string.question, 1, QuizViewModel.getFlagsInQuiz()));
+                getString(R.string.question, 1, QuizViewModelMEBQ.getFlagsInQuiz()));
         return view;
     }
 
     public void updateGuessRows() {
 
-        int numberOfGuessRows = this.quizViewModel.getGuessRows();
+        int numberOfGuessRows = this.quizViewModelMEBQ.getGuessRows();
         for (TableRow row : this.guessTableRows) {
             row.setVisibility(View.GONE);
         }
@@ -102,21 +102,21 @@ public class MainActivityFragment extends Fragment {
     }
 
     public void resetQuiz() {
-        this.quizViewModel.clearFileNameList();
-        this.quizViewModel.setFileNameList(getActivity().getAssets());
-        this.quizViewModel.resetTotalGuesses();
-        this.quizViewModel.resetCorrectAnswers();
-        this.quizViewModel.clearQuizCountriesList();
+        this.quizViewModelMEBQ.clearFileNameList();
+        this.quizViewModelMEBQ.setFileNameList(getActivity().getAssets());
+        this.quizViewModelMEBQ.resetTotalGuesses();
+        this.quizViewModelMEBQ.resetCorrectAnswers();
+        this.quizViewModelMEBQ.clearQuizCountriesList();
 
         int flagCounter = 1;
-        int numberOfFlags = this.quizViewModel.getFileNameList().size();
-        while (flagCounter <= QuizViewModel.getFlagsInQuiz()) {
+        int numberOfFlags = this.quizViewModelMEBQ.getFileNameList().size();
+        while (flagCounter <= QuizViewModelMEBQ.getFlagsInQuiz()) {
             int randomIndex = this.random.nextInt(numberOfFlags);
 
-            String filename = this.quizViewModel.getFileNameList().get(randomIndex);
+            String filename = this.quizViewModelMEBQ.getFileNameList().get(randomIndex);
 
-            if (!this.quizViewModel.getQuizCountriesList().contains(filename)) {
-                this.quizViewModel.getQuizCountriesList().add(filename);
+            if (!this.quizViewModelMEBQ.getQuizCountriesList().contains(filename)) {
+                this.quizViewModelMEBQ.getQuizCountriesList().add(filename);
                 ++flagCounter;
             }
         }
@@ -127,46 +127,46 @@ public class MainActivityFragment extends Fragment {
 
     private void loadNextFlag() {
         AssetManager assets = getActivity().getAssets();
-        String nextImage = this.quizViewModel.getNextCountryFlag();
+        String nextImage = this.quizViewModelMEBQ.getNextCountryFlag();
         String region = nextImage.substring(0, nextImage.indexOf('-'));
 
-        this.quizViewModel.setCorrectAnswer(nextImage);
+        this.quizViewModelMEBQ.setCorrectAnswer(nextImage);
         answerTextView.setText("");
 
         questionNumberTextView.setText(getString(R.string.question,
-                (quizViewModel.getCorrectAnswers() + 1), QuizViewModel.getFlagsInQuiz()));
+                (quizViewModelMEBQ.getCorrectAnswers() + 1), QuizViewModelMEBQ.getFlagsInQuiz()));
 
         try (InputStream stream = assets.open(region + "/" + nextImage + ".png")) {
             Drawable flag = Drawable.createFromStream(stream, nextImage);
             flagImageView.setImageDrawable(flag);
             animate(false);
         } catch (IOException e) {
-            Log.e(QuizViewModel.getTag(), "Error Loading " + nextImage, e);
+            Log.e(QuizViewModelMEBQ.getTag(), "Error Loading " + nextImage, e);
         }
 
-        this.quizViewModel.shuffleFilenameList();
+        this.quizViewModelMEBQ.shuffleFilenameList();
 
-        for (int rowNumber = 0; rowNumber < this.quizViewModel.getGuessRows(); rowNumber++) {
+        for (int rowNumber = 0; rowNumber < this.quizViewModelMEBQ.getGuessRows(); rowNumber++) {
             for (int column = 0; column < guessTableRows[rowNumber].getChildCount(); column++) {
                 Button guessButton = (Button) guessTableRows[rowNumber].getVirtualChildAt(column);
                 guessButton.setEnabled(true);
-                String filename = this.quizViewModel.getFileNameList()
+                String filename = this.quizViewModelMEBQ.getFileNameList()
                         .get((rowNumber * 2) + column)
-                        .substring(this.quizViewModel.getFileNameList()
+                        .substring(this.quizViewModelMEBQ.getFileNameList()
                                 .get((rowNumber * 2) + column).indexOf('-') + 1)
                         .replace('_', ' ');
                 guessButton.setText(filename);
             }
         }
 
-        int row = this.random.nextInt(this.quizViewModel.getGuessRows());
+        int row = this.random.nextInt(this.quizViewModelMEBQ.getGuessRows());
         int column = this.random.nextInt(2);
         TableRow randomRow = guessTableRows[row];
-        ((Button) randomRow.getChildAt(column)).setText(this.quizViewModel.getCorrectCountryName());
+        ((Button) randomRow.getChildAt(column)).setText(this.quizViewModelMEBQ.getCorrectCountryName());
     }
 
     public void animate(boolean animateOut) {
-        if (this.quizViewModel.getCorrectAnswers() == 0) {
+        if (this.quizViewModelMEBQ.getCorrectAnswers() == 0) {
             return;
         }
         int centreX = (quizConstraintLayout.getLeft() + quizConstraintLayout.getRight()) / 2;
@@ -211,8 +211,8 @@ public class MainActivityFragment extends Fragment {
         return answerTextView;
     }
 
-    public QuizViewModel getQuizViewModel() {
-        return quizViewModel;
+    public QuizViewModelMEBQ getQuizViewModel() {
+        return quizViewModelMEBQ;
     }
 }
 

@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivityMEBQ"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityMEBQ"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
@@ -21,13 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".SettingsActivityMEBQ"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivityMEBQ"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nadershamma.apps.androidfunwithflags.MainActivity" />
+                android:value="com.nadershamma.apps.androidfunwithflags.MainActivityMEBQ" />
         </activity>
     </application>
 

@@ -1,11 +1,8 @@
 package com.nadershamma.apps.lifecyclehelpers;
 
 import android.arch.lifecycle.ViewModel;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.util.Log;
-
-import com.nadershamma.apps.androidfunwithflags.MainActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class QuizViewModel extends ViewModel {
+public class QuizViewModelMEBQ extends ViewModel {
     private static final String TAG = "FlagQuiz Activity";
     private static final int FLAGS_IN_QUIZ = 10;
 
@@ -26,7 +23,7 @@ public class QuizViewModel extends ViewModel {
     private int guessRows;
 
 
-    public QuizViewModel() {
+    public QuizViewModelMEBQ() {
         fileNameList = new ArrayList<>();
         quizCountriesList = new ArrayList<>();
     }

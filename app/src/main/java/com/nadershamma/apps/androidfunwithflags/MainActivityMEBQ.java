@@ -12,18 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.nadershamma.apps.eventhandlers.PreferenceChangeListener;
-import com.nadershamma.apps.lifecyclehelpers.QuizViewModel;
+import com.nadershamma.apps.eventhandlers.PreferenceChangeListenerMEBQ;
+import com.nadershamma.apps.lifecyclehelpers.QuizViewModelMEBQ;
 
-import java.util.Set;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivityMEBQ extends AppCompatActivity {
     public static final String CHOICES = "pref_numberOfChoices";
     public static final String REGIONS = "pref_regionsToInclude";
     private boolean deviceIsPhone = true;
     private boolean preferencesChanged = true;
-    private MainActivityFragment quizFragment;
-    private QuizViewModel quizViewModel;
+    private MainActivityFragmentMEBQ quizFragment;
+    private QuizViewModelMEBQ quizViewModelMEBQ;
     private OnSharedPreferenceChangeListener preferencesChangeListener;
 
     private void setSharedPreferences() {
@@ -48,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.quizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
-        this.preferencesChangeListener = new PreferenceChangeListener(this);
+        this.quizViewModelMEBQ = ViewModelProviders.of(this).get(QuizViewModelMEBQ.class);
+        this.preferencesChangeListener = new PreferenceChangeListenerMEBQ(this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -61,11 +59,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (preferencesChanged) {
-            this.quizFragment = (MainActivityFragment) getSupportFragmentManager()
+            this.quizFragment = (MainActivityFragmentMEBQ) getSupportFragmentManager()
                     .findFragmentById(R.id.quizFragment);
-            this.quizViewModel.setGuessRows(PreferenceManager.getDefaultSharedPreferences(this)
+            this.quizViewModelMEBQ.setGuessRows(PreferenceManager.getDefaultSharedPreferences(this)
                     .getString(CHOICES, null));
-            this.quizViewModel.setRegionsSet(PreferenceManager.getDefaultSharedPreferences(this)
+            this.quizViewModelMEBQ.setRegionsSet(PreferenceManager.getDefaultSharedPreferences(this)
                     .getStringSet(REGIONS, null));
 
             this.quizFragment.resetQuiz();
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent preferencesIntent = new Intent(this, SettingsActivity.class);
+        Intent preferencesIntent = new Intent(this, SettingsActivityMEBQ.class);
         startActivity(preferencesIntent);
         return super.onOptionsItemSelected(item);
     }
@@ -98,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
                 Configuration.SCREENLAYOUT_SIZE_MASK;
     }
 
-    public MainActivityFragment getQuizFragment() {
+    public MainActivityFragmentMEBQ getQuizFragment() {
         return this.quizFragment;
     }
 
-    public QuizViewModel getQuizViewModel() {
-        return quizViewModel;
+    public QuizViewModelMEBQ getQuizViewModel() {
+        return quizViewModelMEBQ;
     }
 
     public static String getCHOICES() {
