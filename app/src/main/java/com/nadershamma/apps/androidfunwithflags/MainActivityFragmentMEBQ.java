@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.nadershamma.apps.eventhandlers.GuessButtonListenerMEBQ;
 import com.nadershamma.apps.lifecyclehelpers.QuizViewModelMEBQ;
@@ -96,6 +97,7 @@ public class MainActivityFragmentMEBQ extends Fragment {
         for (TableRow row : this.guessTableRows) {
             row.setVisibility(View.GONE);
         }
+
         for (int rowNumber = 0; rowNumber < numberOfGuessRows; rowNumber++) {
             guessTableRows[rowNumber].setVisibility(View.VISIBLE);
         }
