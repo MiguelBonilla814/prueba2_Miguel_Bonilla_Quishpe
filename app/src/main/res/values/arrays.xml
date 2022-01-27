@@ -19,9 +19,9 @@
     </string-array>
 
     <string-array name="guesses_list">
-        <item>2</item>
-        <item>4</item>
-        <item>6</item>
-        <item>8</item>
+        <item>Nivel 1</item>
+        <item>Nivel 2</item>
+        <item>Nivel 3</item>
+        <item>Nivel 4</item>
     </string-array>
 </resources>
