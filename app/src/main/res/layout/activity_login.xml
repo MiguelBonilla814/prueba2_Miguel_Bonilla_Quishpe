@@ -33,4 +33,10 @@
         android:hint="@string/hint_contraseña"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_ingresar" />
 </LinearLayout>

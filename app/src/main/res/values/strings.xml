@@ -20,4 +20,5 @@
     <string name="titulo_login">LOGIN</string>
     <string name="hint_usuario">Ingrese el usuario</string>
     <string name="hint_contraseña">Ingrese la contraseña</string>
+    <string name="button_ingresar">Ingresar</string>
 </resources>
